@@ -18,11 +18,16 @@ function App() {
       setIsWalletInstalled(true);
     }
   }, []);
-
+ 
   useEffect(() => {
     const initNFTContract = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
+      // contract instance 
+      // it tells our script that anytime we are interacting with the contract
+      // we are actually interacting at this specific contract address
+      // and **contractABI** -> it will have this interface so it will have the function
+      // which we want to call 
       setNFTContract(new Contract(contractAddress, contractABI.abi, signer));
     }
     initNFTContract();
